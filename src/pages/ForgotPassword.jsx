@@ -17,7 +17,7 @@ const ForgotPassword = () => {
         <div className="flex justify-center flex-wrap items-center px-6 py-12 max-w-6xl mx-auto">
           <div className="md:w-[67%] lg:w-[50%] mb-12 md:mb-6">
             <img
-              src="https://images.unsplash.com/flagged/photo-1564767609342-620cb19b2357?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTg1fHxvcGVuJTIwZG9vcnxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=600&q=60"
+              src="https://images.unsplash.com/photo-1532550256335-c281a64ac9f6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80"
               alt="Welcome"
               className="w-full rounded-2xl"
             />
@@ -37,7 +37,7 @@ const ForgotPassword = () => {
               </div>
               <div className="flex justify-between whitespace-nowrap text-sm sm:text-lg">
                 <p className="mb-6">
-                  Already have an account?
+                  Don't have an account?
                   <Link
                     to="/sign-up"
                     className="text-red-500 hover:text-red-700 transition duration-200 ease-in-out ml-1"

@@ -2,8 +2,18 @@ import React, { useState } from "react";
 import { BsFillEyeFill, BsFillEyeSlashFill } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import GAuth from "../components/GAuth";
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  updateProfile,
+} from "firebase/auth";
+import { db } from "../firebase";
+import { doc, serverTimestamp, setDoc } from "firebase/firestore";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const SignUp = () => {
+  const navigate = useNavigate();
   // Form Data UseState Hook
   const [formData, setFormData] = useState({
     name: "",
@@ -25,6 +35,36 @@ const SignUp = () => {
       [e.target.id]: e.target.value,
     }));
   }
+  // Form onSubmit Function
+  async function onSubmit(e) {
+    e.preventDefault();
+
+    try {
+      const auth = getAuth();
+      const userCredential = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      updateProfile(auth.currentUser, {
+        displayName: name,
+      });
+      // To get user Info
+      const user = userCredential.user;
+      //  To delete a user password
+      const formDataCopy = { ...formData };
+      delete formDataCopy.password;
+      // To save time a user register
+      formDataCopy.timestamp = serverTimestamp();
+
+      // To save user info to Database
+      await setDoc(doc(db, "users", user.uid), formDataCopy);
+      // To navigate to homePage after adding user to Database
+      navigate("/");
+    } catch (error) {
+      toast.error("Something went wrong with the registration");
+    }
+  }
   return (
     <>
       <section>
@@ -32,13 +72,13 @@ const SignUp = () => {
         <div className="flex justify-center flex-wrap items-center px-6 py-12 max-w-6xl mx-auto">
           <div className="md:w-[67%] lg:w-[50%] mb-12 md:mb-6">
             <img
-              src="https://images.unsplash.com/photo-1532550256335-c281a64ac9f6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80"
+              src="https://images.unsplash.com/flagged/photo-1564767609342-620cb19b2357?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTg1fHxvcGVuJTIwZG9vcnxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=600&q=60"
               alt="Welcome"
               className="w-full rounded-2xl"
             />
           </div>
           <div className="w-full md:w-[67%] lg:w-[40%] lg:ml-20">
-            <form>
+            <form onSubmit={onSubmit}>
               <div className="mb-6">
                 <input
                   className="w-full px-4 py-2 text-xl text-gray-700
