@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { BsFillEyeFill, BsFillEyeSlashFill } from "react-icons/bs";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import GAuth from "../components/GAuth";
+import { signInWithEmailAndPassword, getAuth } from "firebase/auth";
+import { toast } from "react-toastify";
 
 const SignIn = () => {
   // Form Data UseState Hook
@@ -24,6 +26,24 @@ const SignIn = () => {
       [e.target.id]: e.target.value,
     }));
   }
+  // onSubmit Function for SignIn
+  const navigate = useNavigate();
+  async function onSubmit(e) {
+    e.preventDefault();
+    try {
+      const auth = getAuth();
+      const userCredential = await signInWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      if (userCredential.user) {
+        navigate("/");
+      }
+    } catch (error) {
+      toast.error("Wrong user credentials");
+    }
+  }
   return (
     <>
       <section>
@@ -37,7 +57,7 @@ const SignIn = () => {
             />
           </div>
           <div className="w-full md:w-[67%] lg:w-[40%] lg:ml-20">
-            <form>
+            <form onSubmit={onSubmit}>
               <div className="mb-6">
                 <input
                   className="w-full px-4 py-2 text-xl text-gray-700
