@@ -1,10 +1,15 @@
-import { getAuth } from "firebase/auth";
+import { getAuth, updateProfile } from "firebase/auth";
+import { doc, updateDoc } from "firebase/firestore";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import { db } from "../firebase";
 
 const Profile = () => {
   const auth = getAuth();
   const navigate = useNavigate();
+  // To edit name and email Hook
+  const [changeDetails, setChangeDetails] = useState(false);
 
   // FormData Hook
   const [formData, setFormData] = useState({
@@ -19,6 +24,34 @@ const Profile = () => {
     auth.signOut();
     navigate("/");
   }
+
+  // onChange
+  function onChange(e) {
+    setFormData((prevState) => ({
+      ...prevState,
+      [e.target.id]: e.target.value,
+    }));
+  }
+
+  // onSubmit for Submitting edited profile
+  async function onSubmit() {
+    try {
+      if (auth.currentUser.displayName !== name) {
+        // To update display name in firebase auth
+        await updateProfile(auth.currentUser, {
+          displayName: name,
+        });
+        // To update name in the firestore
+        const docRef = doc(db, "users", auth.currentUser.uid);
+        await updateDoc(docRef, {
+          name,
+        });
+      }
+      toast.success("Profile details updated");
+    } catch (error) {
+      toast.error("Could not update profile details");
+    }
+  }
   return (
     <>
       <section className="max-w-6xl mx-auto flex justify-center items-center flex-col ">
@@ -27,25 +60,37 @@ const Profile = () => {
           <form>
             {/* Name Input */}
             <input
-              className="w-full px-4 py-2 text-xl text-gray-700 bg-white border border-gray-300 rounded transition ease-in-out mb-6"
+              className={`w-full px-4 py-2 text-xl text-gray-700 bg-white border border-gray-300 rounded transition ease-in-out mb-6 ${
+                changeDetails && "bg-red-200 focus:bg-red-200"
+              }`}
               type="text"
               id="name"
               value={name}
-              disabled
+              disabled={!changeDetails}
+              onChange={onChange}
             />
             {/* Name Input */}
             <input
-              className="w-full px-4 py-2 text-xl text-gray-700 bg-white border border-gray-300 rounded transition ease-in-out mb-6"
+              className={`w-full px-4 py-2 text-xl text-gray-700 bg-white border border-gray-300 rounded transition ease-in-out mb-6 ${
+                changeDetails && "bg-red-200 focus:bg-red-200"
+              }`}
               type="email"
-              id="name"
+              id="email"
               value={email}
-              disabled
+              disabled={!changeDetails}
+              onChange={onChange}
             />
             <div className="flex justify-between whitespace-nowrap text-sm sm:text-lg mb-6">
               <p className="flex items-center">
-                Do you want to change your name?{" "}
-                <span className="text-red-600 hover:text-red-700 transition ease-in-out duration-200 ml-2 cursor-pointer ">
-                  Edit
+                Do you want to change your name?
+                <span
+                  onClick={() => {
+                    changeDetails && onSubmit();
+                    setChangeDetails((prevState) => !prevState);
+                  }}
+                  className="text-red-600 hover:text-red-700 transition ease-in-out duration-200 ml-2 cursor-pointer "
+                >
+                  {changeDetails ? "Apply Change" : "Edit"}
                 </span>
               </p>
               <p
