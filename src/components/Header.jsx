@@ -1,7 +1,21 @@
-import React from "react";
-import { Link, NavLink } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Link, NavLink, useNavigate } from "react-router-dom";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 const Header = () => {
+  const navigate = useNavigate();
+  const auth = getAuth();
+  // Using useEffect to check the changing of auth
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setPageState("Profile");
+      } else {
+        setPageState("Sign In");
+      }
+    });
+  }, [auth]);
+  const [pageState, setPageState] = useState("sign-in");
   // NavLink Style Function
   const navLinkStyles = ({ isActive }) => {
     return {
@@ -9,6 +23,7 @@ const Header = () => {
       borderBottom: isActive ? "5px solid #ff0000" : "none",
     };
   };
+
   return (
     <>
       <div className="bg-white border-b shadow-sm sticky top-0 z-50">
@@ -40,8 +55,12 @@ const Header = () => {
                 className={`py-3 text-sm font-semibold text-gray-400 
                     border-b-[3px] border-b-transparent cursor-pointer`}
               >
-                <NavLink to="sign-in" style={navLinkStyles}>
-                  Sign In
+                <NavLink
+                  to="/profile"
+                  style={navLinkStyles}
+                  onClick={() => navigate("/profile")}
+                >
+                  {pageState}
                 </NavLink>
               </li>
             </ul>
