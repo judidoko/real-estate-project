@@ -26,7 +26,7 @@ const Header = () => {
 
   return (
     <>
-      <div className="bg-white border-b shadow-sm sticky top-0 z-40">
+      <div className="bg-white border-b shadow-sm sticky top-0 z-50">
         <header className="flex justify-between items-center px-3 max-w-6xl mx-auto">
           <div>
             <h1 className="h-5 cursor-pointer">
@@ -36,30 +36,26 @@ const Header = () => {
           <nav>
             <ul className="flex space-x-10">
               <li
-                className={`py-3 text-sm font-semibold text-gray-400 
-                    border-b-[3px] border-b-transparent cursor-pointer`}
+                className="py-3 text-sm font-semibold text-gray-400 
+                    border-b-[3px] border-b-transparent cursor-pointer"
               >
                 <NavLink to="/" style={navLinkStyles}>
                   Home
                 </NavLink>
               </li>
               <li
-                className={`py-3 text-sm font-semibold text-gray-400 
-                    border-b-[3px] border-b-transparent cursor-pointer`}
+                className="py-3 text-sm font-semibold text-gray-400 
+                    border-b-[3px] border-b-transparent cursor-pointer"
               >
                 <NavLink to="/offers" style={navLinkStyles}>
                   Offers
                 </NavLink>
               </li>
               <li
-                className={`py-3 text-sm font-semibold text-gray-400 
-                    border-b-[3px] border-b-transparent cursor-pointer`}
+                className="py-3 text-sm font-semibold text-gray-400 
+                    border-b-[3px] border-b-transparent cursor-pointer"
               >
-                <NavLink
-                  to="/profile"
-                  style={navLinkStyles}
-                  onClick={() => navigate("/profile")}
-                >
+                <NavLink to="/profile" style={navLinkStyles}>
                   {pageState}
                 </NavLink>
               </li>
