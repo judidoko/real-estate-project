@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { Link, NavLink, useNavigate } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 const Header = () => {
-  const navigate = useNavigate();
+  const [pageState, setPageState] = useState("Sign In");
   const auth = getAuth();
   // Using useEffect to check the changing of auth
   useEffect(() => {
@@ -15,7 +15,7 @@ const Header = () => {
       }
     });
   }, [auth]);
-  const [pageState, setPageState] = useState("sign-in");
+
   // NavLink Style Function
   const navLinkStyles = ({ isActive }) => {
     return {

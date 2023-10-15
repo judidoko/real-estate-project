@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import Offers from "./pages/Offers";
 import Profile from "./pages/Profile";
@@ -23,7 +23,9 @@ function App() {
           <Route path="/profile" element={<PrivateRoute />}>
             <Route path="/profile" element={<Profile />} />
           </Route>
-          <Route path="/create-listing" element={<CreateListing />} />
+          <Route path="/create-listing" element={<PrivateRoute />}>
+            <Route path="/create-listing" element={<CreateListing />} />
+          </Route>
           <Route path="/sign-in" element={<SignIn />} />
           <Route path="/sign-up" element={<SignUp />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
