@@ -103,6 +103,7 @@ const CreateListing = () => {
       ...formData,
       imgUrls,
       timestamp: serverTimestamp(),
+      useRef: auth.currentUser.uid,
     };
     delete formDataCopy.images;
     !formDataCopy.offer && delete formDataCopy.discountedPrice;
