@@ -8,3 +8,12 @@ body {
   font-family: "Heebo", sans-serif;
   background-color: rgb(229, 228, 250);
 }
+
+.swiper-button-next:after,
+.swiper-button-prev:after {
+  color: #896ce8;
+}
+
+.swiper-pagination-progressbar .swiper-pagination-progressbar-fill {
+  background: #896ce8 !important;
+}
