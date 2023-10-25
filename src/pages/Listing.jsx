@@ -37,6 +37,7 @@ const Listing = () => {
   return (
     <main>
       <Swiper
+        slidesPerView={1}
         navigation
         pagination={{ type: "progressbar" }}
         effect="fade"
@@ -125,7 +126,7 @@ const Listing = () => {
             </li>
           </ul>
         </div>
-        <div className="bg-blue-300 w-full h-[200px] lg:h-[400px] z-10 overflow-hidden"></div>
+        <div className="w-full h-[200px] lg:h-[400px] z-10 overflow-hidden"></div>
       </div>
     </main>
   );
