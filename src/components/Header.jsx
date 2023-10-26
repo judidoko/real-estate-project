@@ -47,6 +47,14 @@ const Header = () => {
                 className="py-3 text-sm font-semibold text-gray-400 
                     border-b-[3px] border-b-transparent cursor-pointer"
               >
+                <NavLink to="/about-us" style={navLinkStyles}>
+                  About
+                </NavLink>
+              </li>
+              <li
+                className="py-3 text-sm font-semibold text-gray-400 
+                    border-b-[3px] border-b-transparent cursor-pointer"
+              >
                 <NavLink to="/offers" style={navLinkStyles}>
                   Offers
                 </NavLink>

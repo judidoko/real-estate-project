@@ -13,6 +13,8 @@ import PrivateRoute from "./components/PrivateRoute";
 import CreateListing from "./pages/CreateListing";
 import EditListing from "./pages/EditListing";
 import Listing from "./pages/Listing";
+import About from "./pages/About";
+import Footer from "./components/Footer";
 
 function App() {
   return (
@@ -21,7 +23,9 @@ function App() {
         <Header />
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/about-us" element={<About />} />
           <Route path="/offers" element={<Offers />} />
+
           <Route
             path="/category/:categoryName/:listingId"
             element={<Listing />}
@@ -39,6 +43,7 @@ function App() {
           <Route path="/sign-up" element={<SignUp />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
         </Routes>
+        <Footer />
       </Router>
       <ToastContainer
         position="bottom-center"

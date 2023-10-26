@@ -17,3 +17,12 @@ body {
 .swiper-pagination-progressbar .swiper-pagination-progressbar-fill {
   background: #896ce8 !important;
 }
+
+/* To remove scroll Bar */
+/* html::-webkit-scrollbar {
+  display: none;
+} */
+/* for Mozila firefox */
+/* html {
+  scrollbar-width: none;
+} */
