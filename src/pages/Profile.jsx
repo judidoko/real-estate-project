@@ -19,7 +19,7 @@ import ListingItem from "../components/ListingItem";
 const Profile = () => {
   const auth = getAuth();
   const navigate = useNavigate();
-  // To edit name and email Hook
+  // To edit name and email, listings and loading Hook
   const [changeDetails, setChangeDetails] = useState(false);
   const [listings, setListings] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -163,7 +163,7 @@ const Profile = () => {
               className="flex justify-center items-center"
             >
               <FcHome className="mr-2 text-3xl bg-red-200 rounded-full p-1 border-2" />
-              Sell or rent your home
+              Sell or rent of properties
             </Link>
           </button>
         </div>

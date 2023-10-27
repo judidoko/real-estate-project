@@ -19,7 +19,7 @@ const ListingItem = ({ listing, id, onDelete, onEdit }) => {
             className="absolute top-2 left-2 bg-[#0729] text-white uppercase text-xs font-semibold rounded-md px-2 py-1 shadow-lg"
             fromNow
           >
-            {listing.timestamp?.timestamp?.toDate()}
+            {listing.timestamp?.toDate()}
           </Moment>
           <div className="w-full p-[10px]">
             <div className="flex items-center space-x-1">
