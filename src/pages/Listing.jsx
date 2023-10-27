@@ -34,6 +34,7 @@ const Listing = () => {
   if (loading) {
     return <Spinner />;
   }
+  const discount = listing.regularPrice - listing.discountedPrice;
   return (
     <main>
       <Swiper
@@ -98,7 +99,10 @@ const Listing = () => {
               {listing.offer && (
                 <p className="w-full max-w-[200px] bg-green-800 rounded-md p-2 text-white text-center font-semibold shadow-md">
                   <span>&#8358;</span>
-                  {+listing.regularPrice - +listing.discountedPrice} Discount
+                  {discount
+                    .toString()
+                    .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}{" "}
+                  Discount
                 </p>
               )}
             </p>
