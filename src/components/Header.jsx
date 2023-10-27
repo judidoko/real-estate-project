@@ -20,7 +20,7 @@ const Header = () => {
   const navLinkStyles = ({ isActive }) => {
     return {
       color: isActive ? "#000000" : "none",
-      borderBottom: isActive ? "5px solid #ff0000" : "none",
+      borderBottom: isActive ? "5px solid #008000" : "none",
     };
   };
 

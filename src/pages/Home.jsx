@@ -143,7 +143,7 @@ const Home = () => {
               </h2>
               <Link to="/category/rent">
                 <p className="px-3 text-sm text-blue-600 hover:text-blue-800 transition duration-200 ease-in-out">
-                  Show more places for rent
+                  Show more properties for rent
                 </p>
               </Link>
               <ul className="sm:grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
@@ -165,7 +165,7 @@ const Home = () => {
               </h2>
               <Link to="/category/sale">
                 <p className="px-3 text-sm text-blue-600 hover:text-blue-800 transition duration-200 ease-in-out">
-                  Show more places for sale
+                  Show more properties for sale
                 </p>
               </Link>
               <ul className="sm:grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
