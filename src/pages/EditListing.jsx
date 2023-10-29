@@ -29,7 +29,7 @@ const EditListing = () => {
     name: "",
     bedrooms: 1,
     bathrooms: 1,
-    packing: false,
+    parking: false,
     furnished: false,
     address: "",
     description: "",
@@ -46,7 +46,7 @@ const EditListing = () => {
     name,
     bedrooms,
     bathrooms,
-    packing,
+    parking,
     furnished,
     address,
     description,
@@ -261,26 +261,26 @@ const EditListing = () => {
               />
             </div>
           </div>
-          <p className="text-lg mt-6 font-semibold">Packing Space</p>
+          <p className="text-lg mt-6 font-semibold">Parking Space</p>
           <div className="flex space-x-4">
             <button
               type="button"
-              id="packing"
+              id="parking"
               value={true}
               onClick={onChange}
               className={`px-7 py-3 font-medium text-sm uppercase shadow-md rounded hover:shadow-lg focus:shadow-lg active:shadow-lg transition duration-200 ease-in-out w-full ${
-                !packing ? "bg-white text-black" : "bg-slate-600 text-white"
+                !parking ? "bg-white text-black" : "bg-slate-600 text-white"
               }`}
             >
               Yes
             </button>
             <button
               type="button"
-              id="packing"
+              id="parking"
               value={false}
               onClick={onChange}
               className={`px-7 py-3 font-medium text-sm uppercase shadow-md rounded hover:shadow-lg focus:shadow-lg active:shadow-lg transition duration-200 ease-in-out w-full ${
-                packing ? "bg-white text-black" : "bg-slate-600 text-white"
+                parking ? "bg-white text-black" : "bg-slate-600 text-white"
               }`}
             >
               No
